@@ -26,7 +26,7 @@ export const LoginModal = ({
       .then((res) => {
         console.log(res);
       })
-      .catch((err) => console.error(err));
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -45,7 +45,7 @@ export const LoginModal = ({
           />
           <TextField
             label="password"
-            name="pass"
+            name="password"
             type="password"
             onChange={(e) => changeHandler(e)}
           />

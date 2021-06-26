@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
+const { Op } = require("./database/Index");
 require("dotenv").config();
 
 app.use(express.urlencoded({ extended: true }));
@@ -15,6 +16,7 @@ module.exports = {
   app,
   jwt,
   bcrypt,
+  Op,
 };
 
 require("./routes/Auth/login");
