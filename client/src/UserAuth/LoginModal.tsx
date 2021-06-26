@@ -1,10 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import { Modal, TextField, Button } from "@material-ui/core";
+import { IUser } from "../common/types";
+import "./assets/LoginModal.scss";
+import axios from "axios";
 
 export const LoginModal = ({
   loginModalOpen,
   setLoginModalOpen,
 }: LoginModalProps) => {
+  const [credentials, setCredentials] = useState<IUser>({
+    login: "",
+    password: "",
+  });
+
+  const changeHandler = (
+    e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
+  ) => {
+    const { name, value } = e.currentTarget;
+    setCredentials({ ...credentials, [name]: value });
+  };
+
+  const loginHandler = () => {
+    axios
+      .post("/api/login", credentials)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => console.error(err));
+  };
+
   return (
     <Modal
       open={loginModalOpen}
@@ -13,13 +37,29 @@ export const LoginModal = ({
     >
       <div className="medium-modal-white">
         <h1>Login</h1>
-        <div>
-          <TextField label="username or email" name="cred" />
-          <TextField label="password" name="pass" />
+        <div className="login-container">
+          <TextField
+            label="username or email"
+            name="login"
+            onChange={(e) => changeHandler(e)}
+          />
+          <TextField
+            label="password"
+            name="pass"
+            type="password"
+            onChange={(e) => changeHandler(e)}
+          />
         </div>
-        <Button variant="contained" color="secondary">
-          Login
-        </Button>
+        <div style={{ textAlignLast: "center" }}>
+          <Button
+            variant="contained"
+            color="secondary"
+            style={{ placeSelf: "center" }}
+            onClick={() => loginHandler()}
+          >
+            Login
+          </Button>
+        </div>
       </div>
     </Modal>
   );

@@ -6,3 +6,12 @@ export interface IExercise {
   weightUnit?: "lb" | "kg";
   time?: number | 0;
 }
+
+export interface IUser {
+  login: string;
+  password: string;
+}
+
+export interface IUserSignUp extends IUser {
+  retypePassword: string;
+}
