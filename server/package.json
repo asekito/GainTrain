@@ -15,5 +15,10 @@
     "db": "docker-compose up",
     "dev": "concurrently \"yarn db\" \"yarn start\"",
     "start:dev": "concurrently \"yarn db\" \"yarn start\" cd ../client && yarn start:dev"
+  },
+  "devDependencies": {
+    "concurrently": "^6.2.0",
+    "db-migrate": "^0.11.12",
+    "db-migrate-mysql": "^2.1.2"
   }
 }
