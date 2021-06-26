@@ -5,7 +5,7 @@ import { AddExerciseForm } from "./AddExerciseForm";
 import { ExerciseView } from "./ExerciseView";
 import "./assets/AddExercise.scss";
 
-export const AddExercise = () => {
+const AddExercise = () => {
   const [exercises, setExercises] = useState<IExercise[]>([]);
   const [currentExercise, setCurrentExercise] = useState<IExercise>({
     exercise: "",
@@ -93,3 +93,5 @@ export const AddExercise = () => {
     </div>
   );
 };
+
+export default AddExercise;
