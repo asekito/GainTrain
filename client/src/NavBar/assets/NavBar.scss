@@ -1,0 +1,21 @@
+#nav-bar {
+  display: flex;
+  font-family: "Roboto Condensed";
+  padding: 0em 2em;
+  align-items: center;
+  background: crimson;
+  width: 100%;
+}
+
+#nav-bar > ul {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+}
+
+#nav-bar > ul > li {
+  cursor: pointer;
+  margin: 0em 2em;
+  padding: 0.7em 1.2em;
+  font-size: 20px;
+}

@@ -56,34 +56,40 @@ export const AddExercise = () => {
   };
 
   return (
-    <div>
-      <h1 onClick={() => console.log(exercises)}>Add your workout</h1>
-      <div className="form-container">
-        <AddExerciseForm
-          currentExercise={currentExercise}
-          changeHandler={changeHandler}
-        />
-        <Button
-          variant="outlined"
-          color="secondary"
-          onClick={() => clearForm()}
-        >
-          Clear
-        </Button>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={() => addExercise()}
-        >
-          Add
-        </Button>
-        <Button variant="contained" color="secondary">
-          Submit
-        </Button>
+    <div className="container">
+      <div className="add-view">
+        <div>
+          <h1 onClick={() => console.log(exercises)}>Add your workout</h1>
+          <AddExerciseForm
+            currentExercise={currentExercise}
+            changeHandler={changeHandler}
+          />
+          <Button
+            variant="outlined"
+            color="secondary"
+            onClick={() => clearForm()}
+          >
+            Clear
+          </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => addExercise()}
+          >
+            Add
+          </Button>
+        </div>
+        <div>
+          <ExerciseView exercises={exercises} />
+        </div>
       </div>
-      <div>
-        <ExerciseView exercises={exercises} />
-      </div>
+      <Button
+        variant="contained"
+        color="secondary"
+        style={{ width: "20px", placeSelf: "center" }}
+      >
+        Submit
+      </Button>
     </div>
   );
 };

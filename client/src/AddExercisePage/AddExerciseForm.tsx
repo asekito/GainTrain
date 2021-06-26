@@ -14,12 +14,13 @@ export const AddExerciseForm = ({
   changeHandler,
 }: IAddExerciseFormProps) => {
   return (
-    <div>
+    <div className="form-container">
       <TextField
         value={currentExercise.exercise}
         label="Exercise"
         name="exercise"
         onChange={(e) => changeHandler(e)}
+        className="add-exercise-input"
       />
       <TextField
         value={currentExercise.sets}
@@ -27,6 +28,7 @@ export const AddExerciseForm = ({
         type="number"
         name="sets"
         onChange={(e) => changeHandler(e)}
+        className="add-exercise-input"
       />
       <TextField
         value={currentExercise.reps}
@@ -34,6 +36,7 @@ export const AddExerciseForm = ({
         type="number"
         name="reps"
         onChange={(e) => changeHandler(e)}
+        className="add-exercise-input"
       />
       <div>
         <TextField
@@ -47,6 +50,7 @@ export const AddExerciseForm = ({
             ),
           }}
           onChange={(e) => changeHandler(e)}
+          className="add-exercise-input"
         />
         {/* <TextField
           select
@@ -67,6 +71,7 @@ export const AddExerciseForm = ({
         }}
         name="time"
         onChange={(e) => changeHandler(e)}
+        className="add-exercise-input"
       />
     </div>
   );

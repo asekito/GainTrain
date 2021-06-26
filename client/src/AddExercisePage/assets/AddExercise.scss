@@ -1,3 +1,22 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap");
+
+.container {
+  margin: 3em 6em;
+  font-family: "Roboto Condensed";
+  display: flex;
+  flex-direction: column;
+}
+
+.add-view {
+  display: flex;
+  place-content: space-around;
+}
+
 .form-container {
-  background-color: black;
+  display: flex;
+  flex-direction: column;
+}
+
+.add-exercise-input {
+  width: 300px;
 }

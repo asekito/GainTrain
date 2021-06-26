@@ -9,9 +9,19 @@ interface IExercisesViewProps {
 export const ExerciseView = ({ exercises }: IExercisesViewProps) => {
   return (
     <div>
-      <h1>Exercise View</h1>
+      <h1>Exercises</h1>
       {exercises.map((i) => (
-        <div>{i.exercise}</div>
+        <div>
+          <div>{i.exercise}</div>
+          {i.reps ? <div>{i.reps}</div> : null}
+          {i.sets ? <div>{i.sets}</div> : null}
+          {i.weight ? (
+            <div>
+              {i.weight} {i.weightUnit}
+            </div>
+          ) : null}
+          {i.time ? <div>{i.time} minutes</div> : null}
+        </div>
       ))}
     </div>
   );
