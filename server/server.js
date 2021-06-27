@@ -21,3 +21,4 @@ module.exports = {
 
 require("./routes/Auth/login");
 require("./routes/Auth/signup");
+require("./routes/Auth/tokenauth");

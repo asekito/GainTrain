@@ -14,7 +14,7 @@ module.exports = (env, argv) => {
         { test: /\.(ts|tsx)$/, exclude: /node_modules/, loader: "ts-loader" },
         { test: /\.(png|jpe?g|gif)$/i, use: ["file-loader"] },
         {
-          test: /\.s[ac]ss$/i,
+          test: /\.s?css$/i,
           use: ["style-loader", "css-loader", "sass-loader"],
         },
       ],

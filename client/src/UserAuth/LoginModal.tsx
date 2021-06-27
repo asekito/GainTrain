@@ -3,6 +3,10 @@ import { Modal, TextField, Button } from "@material-ui/core";
 import { IUser } from "../common/types";
 import "./assets/LoginModal.scss";
 import axios from "axios";
+export interface LoginModalProps {
+  loginModalOpen: boolean;
+  setLoginModalOpen: React.Dispatch<boolean>;
+}
 
 export const LoginModal = ({
   loginModalOpen,
@@ -24,7 +28,11 @@ export const LoginModal = ({
     axios
       .post("/api/login", credentials)
       .then((res) => {
-        console.log(res);
+        if (res.data.auth) {
+          console.log("hit hit hit ");
+          localStorage.setItem("token", res.data.token);
+          window.location.href = "/";
+        }
       })
       .catch((err) => console.log(err));
   };
@@ -37,7 +45,7 @@ export const LoginModal = ({
     >
       <div className="medium-modal-white">
         <h1>Login</h1>
-        <div className="login-container">
+        <div className="modal-container-forms">
           <TextField
             label="username or email"
             name="login"
@@ -64,8 +72,3 @@ export const LoginModal = ({
     </Modal>
   );
 };
-
-export interface LoginModalProps {
-  setLoginModalOpen: React.Dispatch<boolean>;
-  loginModalOpen: boolean;
-}

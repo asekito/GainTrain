@@ -27,7 +27,10 @@ app.post("/api/sign-up", async (req, res) => {
     });
 
     if (user) {
-      throw new Error("Already an account with that username or email.");
+      return res.status(200).send({
+        success: false,
+        msg: "User already exists with email or username",
+      });
     }
 
     const hashedPassword = bcrypt.hashSync(password, 8);
@@ -43,9 +46,9 @@ app.post("/api/sign-up", async (req, res) => {
       }
       // { transaction }
     );
-    console.log(newUser);
+
     // await transaction.commit();
-    return res.status(200).send({ response: "yes" });
+    return res.status(200).send({ success: true, msg: "" });
   } catch (err) {
     console.log(err);
     return res.status(401).send({ error: err });

@@ -1,10 +1,11 @@
 #nav-bar {
   display: flex;
   font-family: "Roboto Condensed";
-  padding: 0em 2em;
+  // padding: 0em 2em;
+  padding-left: 5em;
   align-items: center;
   background: crimson;
-  width: 100%;
+  // width: 100%;
 }
 
 #nav-bar > ul {
@@ -18,4 +19,9 @@
   margin: 0em 2em;
   padding: 0.7em 1.2em;
   font-size: 20px;
+}
+
+#nav-bar > ul > li > a {
+  text-decoration: none;
+  color: white;
 }

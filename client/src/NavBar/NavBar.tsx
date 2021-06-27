@@ -2,7 +2,12 @@ import React from "react";
 import "./assets/NavBar.scss";
 import { Link } from "react-router-dom";
 
-export const NavBar = ({ setLoginModalOpen }: INavBarProps) => {
+interface INavBarProps {
+  setLoginModalOpen: React.Dispatch<boolean>;
+  isLoggedIn: boolean;
+}
+
+export const NavBar = ({ setLoginModalOpen, isLoggedIn }: INavBarProps) => {
   return (
     <div id="nav-bar">
       <h1>SwoleM8</h1>
@@ -13,15 +18,19 @@ export const NavBar = ({ setLoginModalOpen }: INavBarProps) => {
         <li>
           <Link to="/about">About</Link>
         </li>
-        <li onClick={() => setLoginModalOpen(true)}>
-          {/* <Link to="/login">Login</Link> */}
-          Login
-        </li>
+        {isLoggedIn ? (
+          <li>
+            <Link to="/add-exercise">Add Exercise</Link>
+          </li>
+        ) : (
+          <li onClick={() => setLoginModalOpen(true)}>Login</li>
+        )}
+        {isLoggedIn && (
+          <li>
+            <Link to="/my-calendar">Calendar</Link>
+          </li>
+        )}
       </ul>
     </div>
   );
 };
-
-interface INavBarProps {
-  setLoginModalOpen: React.Dispatch<boolean>;
-}

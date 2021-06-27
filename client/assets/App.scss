@@ -16,3 +16,9 @@ body {
   outline: none;
   padding: 2em 3.5em;
 }
+
+.modal-container-forms {
+  display: flex;
+  flex-direction: column;
+  padding: 0 10em;
+}

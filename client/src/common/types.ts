@@ -5,13 +5,11 @@ export interface IExercise {
   weight?: number | 0;
   weightUnit?: "lb" | "kg";
   time?: number | 0;
+  distance?: number | 0;
+  distanceUnit?: "mi" | "km";
 }
 
 export interface IUser {
   login: string;
   password: string;
-}
-
-export interface IUserSignUp extends IUser {
-  retypePassword: string;
 }
