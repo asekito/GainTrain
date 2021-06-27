@@ -34,7 +34,7 @@ module.exports = (env, argv) => {
     },
     plugins: [
       new HtmlWebpackPlugin({
-        title: "SwoleMater",
+        title: "GainTrain",
         template: "./public/Index.html",
       }),
     ],

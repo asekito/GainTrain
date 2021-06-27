@@ -4,7 +4,7 @@
     "host": "localhost",
     "user": "root",
     "password": "password",
-    "database": "swolemate_db",
+    "database": "gaintrain_db",
     "multipleStatements": true
   },
   "prod": {
