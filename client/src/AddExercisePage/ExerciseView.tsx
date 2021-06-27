@@ -28,15 +28,36 @@ export const ExerciseView = ({
       <hr />
       {exercises.map((i) => (
         <div>
-          <div>Exercise: {i.exercise}</div>
-          {i.reps ? <div>Reps: {i.reps}</div> : null}
-          {i.sets ? <div>Sets: {i.sets}</div> : null}
-          {i.weight ? (
-            <div>
-              {i.weight} {i.weightUnit}
+          {/* STRENGTH TRAINING VIEW */}
+          {i.type === "strength" ? (
+            <div className="exercise-addition">
+              <div onClick={() => console.log(exercises)}>
+                Exercise: {i.exercise}
+              </div>
+              {i.reps ? <div>Reps: {i.reps}</div> : null}
+              {i.sets ? <div>Sets: {i.sets}</div> : null}
+              {i.weight ? (
+                <div>
+                  {i.weight} {i.weightUnit}
+                </div>
+              ) : null}
             </div>
           ) : null}
-          {i.time ? <div>Total time: {i.time} minutes</div> : null}
+
+          {/* CARDIO TRAINING VIEW */}
+          {i.type === "cardio" ? (
+            <div className="exercise-addition">
+              <div onClick={() => console.log(exercises)}>
+                Exercise: {i.exercise}
+              </div>
+              {i.time ? <div>Total time: {i.time} minutes</div> : null}
+              {i.distance ? (
+                <div>
+                  Total distance: {i.distance} {i.distanceUnit}
+                </div>
+              ) : null}
+            </div>
+          ) : null}
         </div>
       ))}
     </div>

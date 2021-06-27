@@ -19,6 +19,15 @@ module.exports = {
   Op,
 };
 
+// -----------------
+// AUTH ROUTES
+// -----------------
 require("./routes/Auth/login");
 require("./routes/Auth/signup");
 require("./routes/Auth/tokenauth");
+
+// -----------------
+// PROGRAM ROUTES
+// -----------------
+require("./routes/Program/add-program");
+require("./routes/Program/get-programs");

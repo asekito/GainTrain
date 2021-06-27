@@ -1,6 +1,7 @@
 import React from "react";
 import "./assets/NavBar.scss";
 import { Link } from "react-router-dom";
+import TrainIcon from "@material-ui/icons/Train";
 
 interface INavBarProps {
   setSignupModalOpen: React.Dispatch<boolean>;
@@ -17,7 +18,10 @@ export const NavBar = ({
 }: INavBarProps) => {
   return (
     <div id="nav-bar">
-      <h1>SwoleM8</h1>
+      <div style={{ display: "contents" }}>
+        <h1 style={{ marginRight: "10px" }}>Gain Train</h1>
+        <TrainIcon fontSize="large" />
+      </div>
       <ul>
         <li>
           <Link to="/">Home</Link>

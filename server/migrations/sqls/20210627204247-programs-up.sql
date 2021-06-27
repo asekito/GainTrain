@@ -1,5 +1,5 @@
 /* Replace with your SQL commands */
-CREATE TABLE IF NOT EXISTS exercise_sets (
+CREATE TABLE IF NOT EXISTS programs (
   id INT AUTO_INCREMENT PRIMARY KEY,
   user_id INT NOT NULL,
   exercises JSON NOT NULL,

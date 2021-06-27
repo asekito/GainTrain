@@ -10,19 +10,19 @@ import { IExercise } from "../common/types";
 
 interface IAddExerciseFormProps {
   currentExercise: IExercise;
-  // changeHandler: (
-  //   e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  // ) => void;
   setCurrentExercise: React.Dispatch<IExercise>;
+  clearForm: () => void;
+  addExercise: () => void;
+  // setStrengthView: React.Dispatch<boolean>;
+  // strengthView: boolean;
 }
 
 export const AddExerciseForm = ({
   currentExercise,
-  // changeHandler,
   setCurrentExercise,
+  clearForm,
+  addExercise,
 }: IAddExerciseFormProps) => {
-  const [strengthView, setStrengthView] = useState<boolean>(true);
-
   const changeHandler = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -32,14 +32,14 @@ export const AddExerciseForm = ({
 
   return (
     <div className="form-container">
+      <h1>Add your workout</h1>
       <ButtonGroup
         color="secondary"
         aria-label="outlined primary button group"
-        style={{ placeSelf: "center", marginBottom: "1em" }}
+        style={{ marginLeft: "3em" }}
       >
         <Button
           onClick={() => {
-            setStrengthView(false);
             setCurrentExercise({
               exercise: "",
               sets: 0,
@@ -49,6 +49,7 @@ export const AddExerciseForm = ({
               time: 0,
               distance: 0,
               distanceUnit: "mi",
+              type: "cardio",
             });
           }}
         >
@@ -56,7 +57,7 @@ export const AddExerciseForm = ({
         </Button>
         <Button
           onClick={() => {
-            setStrengthView(true);
+            // setStrengthView(true);
             setCurrentExercise({
               exercise: "",
               sets: 0,
@@ -66,6 +67,7 @@ export const AddExerciseForm = ({
               time: 0,
               distance: 0,
               distanceUnit: "mi",
+              type: "strength",
             });
           }}
         >
@@ -79,7 +81,7 @@ export const AddExerciseForm = ({
         onChange={(e) => changeHandler(e)}
         className="add-exercise-input"
       />
-      {strengthView ? (
+      {currentExercise.type === "strength" ? (
         <>
           <TextField
             value={currentExercise.sets}
@@ -128,7 +130,10 @@ export const AddExerciseForm = ({
           />
           <TextField
             label="Distance"
+            name="distance"
             type="number"
+            onChange={(e) => changeHandler(e)}
+            className="add-exercise-input"
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">Miles</InputAdornment>
@@ -137,6 +142,23 @@ export const AddExerciseForm = ({
           />
         </>
       )}
+      <div className="add-exercise-button-container">
+        <Button
+          variant="outlined"
+          color="secondary"
+          onClick={() => clearForm()}
+          style={{ margin: "1em" }}
+        >
+          Clear
+        </Button>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={() => addExercise()}
+        >
+          Add
+        </Button>
+      </div>
     </div>
   );
 };

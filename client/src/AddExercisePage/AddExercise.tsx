@@ -5,9 +5,11 @@ import { AddExerciseForm } from "./AddExerciseForm";
 import { ExerciseView } from "./ExerciseView";
 import "./assets/AddExercise.scss";
 import moment from "moment";
+import axios from "axios";
 
 const AddExercise = () => {
   const [exercises, setExercises] = useState<IExercise[]>([]);
+  // const [strengthView, setStrengthView] = useState<boolean>(true);
   const [currentExercise, setCurrentExercise] = useState<IExercise>({
     exercise: "",
     sets: 0,
@@ -17,6 +19,7 @@ const AddExercise = () => {
     time: 0,
     distance: 0,
     distanceUnit: "mi",
+    type: "strength",
   });
   const [programDate, setProgramDate] = useState<string>(
     moment(new Date(Date.now())).format("YYYY-MM-DD")
@@ -35,13 +38,16 @@ const AddExercise = () => {
         currentExercise.weight === 0) &&
       (currentExercise.time === 0 || currentExercise.distance === 0)
     ) {
+      console.log(currentExercise);
       return console.log(
         "Please fill outa weightlifting or cardiovascular exercise. Make this a popover Andrea"
       );
     }
 
     setExercises((exercises) => [...exercises, currentExercise]);
+    // setStrengthView(true);
     setCurrentExercise({
+      ...currentExercise,
       exercise: "",
       sets: 0,
       reps: 0,
@@ -54,7 +60,9 @@ const AddExercise = () => {
   };
 
   const clearForm = () => {
+    // setStrengthView(true);
     setCurrentExercise({
+      ...currentExercise,
       exercise: "",
       sets: 0,
       reps: 0,
@@ -63,44 +71,55 @@ const AddExercise = () => {
       time: 0,
       distance: 0,
       distanceUnit: "mi",
+      // type: strengthView ? "strength" : "cardio",
     });
+  };
+
+  const submitHandler = () => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      alert("Expired token.");
+      return console.log("No token. Not logged in or expired token refresh.");
+    }
+    axios
+      .post("/api/add-exercise", {
+        program: JSON.stringify(exercises),
+        programDate: programDate,
+        token: token,
+      })
+      .then((res) => {
+        const { success, msg } = res.data;
+        if (success) {
+          window.location.href = "/add-exercise";
+        }
+      })
+      .catch((err) => {
+        return console.error(err);
+      });
   };
 
   return (
     <div className="container">
       <div className="add-view">
-        <div>
-          <h1 onClick={() => console.log(programDate)}>Add your workout</h1>
+        <div style={{ flex: 1 }}>
           <AddExerciseForm
             currentExercise={currentExercise}
             // changeHandler={changeHandler}
             setCurrentExercise={setCurrentExercise}
+            addExercise={addExercise}
+            clearForm={clearForm}
+            // setStrengthView={setStrengthView}
+            // strengthView={strengthView}
           />
-          <div className="add-exercise-button-container">
-            <Button
-              variant="outlined"
-              color="secondary"
-              onClick={() => clearForm()}
-              style={{ margin: "1em" }}
-            >
-              Clear
-            </Button>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={() => addExercise()}
-            >
-              Add
-            </Button>
-          </div>
         </div>
-        <div>
+        <div style={{ flex: 1 }}>
           <div style={{ display: "flex" }}>
-            <h1 style={{ marginRight: "1em" }}>Exercises</h1>
+            <h1 style={{ marginRight: "1em" }}>Program</h1>
             <Button
               variant="contained"
               color="secondary"
               style={{ width: "20px", placeSelf: "center" }}
+              onClick={() => submitHandler()}
             >
               Submit
             </Button>

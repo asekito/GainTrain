@@ -7,7 +7,7 @@ app.post("/api/token-check", async (req, res) => {
       return res.status(200).send({ auth: false });
     }
 
-    var decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+    const decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
 
     return res.status(200).send({ auth: true, uid: decodedToken.user });
   } catch (err) {

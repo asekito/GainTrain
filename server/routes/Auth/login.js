@@ -4,7 +4,7 @@ const { User } = require("../../database/Index");
 app.post("/api/login", async (req, res) => {
   try {
     const { login, password } = req.body;
-    console.log(password);
+
     if (!login || !password) {
       throw new Error("One or more fields have incorrect inputs.");
     }

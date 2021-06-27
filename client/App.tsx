@@ -36,6 +36,7 @@ export const App = () => {
       })
       .catch((err) => {
         localStorage.removeItem("token");
+        window.location.href = "/";
       });
   }, [loginModalOpen]);
 

@@ -1,2 +1,2 @@
 /* Replace with your SQL commands */
-DROP TABLE IF EXISTS exercise_sets;
+DROP TABLE IF EXISTS programs;

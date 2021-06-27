@@ -7,6 +7,7 @@ export interface IExercise {
   time?: number | 0;
   distance?: number | 0;
   distanceUnit?: "mi" | "km";
+  type: "strength" | "cardio";
 }
 
 export interface IUser {
