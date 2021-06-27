@@ -50,6 +50,7 @@ export const LoginModal = ({
             label="username or email"
             name="login"
             onChange={(e) => changeHandler(e)}
+            autoFocus
           />
           <TextField
             label="password"

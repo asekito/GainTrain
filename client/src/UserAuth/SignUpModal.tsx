@@ -22,7 +22,7 @@ export const SignUpModal = ({
     const { value, name } = e.currentTarget;
     setSignupInfo({ ...signupInfo, [name]: value });
   };
-
+  //#region
   const submitHandler = () => {
     const { username, email, password, retypePassword, firstname, lastname } =
       signupInfo;
@@ -65,6 +65,7 @@ export const SignUpModal = ({
       })
       .catch((err) => console.log(err));
   };
+  //#endregion
 
   return (
     <Modal

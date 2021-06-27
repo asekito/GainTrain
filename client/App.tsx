@@ -1,31 +1,28 @@
 import React, { useState, lazy, Suspense, useEffect } from "react";
-// import { AddExercise } from "./src/AddExercisePage/AddExercise";
-const AddExercise = lazy(() => import("./src/AddExercisePage/AddExercise"));
-import { NavBar } from "./src/NavBar/NavBar";
-const Home = lazy(() => import("./src/HomePage/Home"));
-const LoginModal = lazy(() =>
-  import("./src/UserAuth/LoginModal").then((m) => ({ default: m.LoginModal }))
-);
-const CalendarPage = lazy(() =>
-  import("./src/CalendarPage/CalendarPage").then((m) => ({
-    default: m.CalendarPage,
-  }))
-);
-const SignUpModal = lazy(() =>
-  import("./src/UserAuth/SignUpModal").then((m) => ({ default: m.SignUpModal }))
-);
-
-import "./assets/App.scss";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import axios from "axios";
+import "./assets/App.scss";
+
+import { NavBar } from "./src/NavBar/NavBar";
+import {
+  AddExercise,
+  Home,
+  LoginModal,
+  CalendarPage,
+  SignUpModal,
+} from "./AppComponentImports";
 
 export const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
-
+  // -------------------------------------------------------
   // MODAL STATE
+  // -------------------------------------------------------
   const [loginModalOpen, setLoginModalOpen] = useState<boolean>(false);
-  const [signupModalOpen, setSignupModalOpen] = useState<boolean>(true);
+  const [signupModalOpen, setSignupModalOpen] = useState<boolean>(false);
 
+  // -------------------------------------------------------
+  // -- Check if logged in with valid token in local storage
+  // -------------------------------------------------------
   useEffect(() => {
     const loggedIn = localStorage.getItem("token");
     axios
@@ -42,10 +39,23 @@ export const App = () => {
       });
   }, [loginModalOpen]);
 
+  const logoutHandler = () => {
+    window.location.href = "/";
+    localStorage.removeItem("token");
+    setTimeout(() => {
+      setIsLoggedIn(false);
+    }, 300);
+  };
+
   return (
     <Router>
       <Suspense fallback={<div>Loading...</div>}>
-        <NavBar setLoginModalOpen={setLoginModalOpen} isLoggedIn={isLoggedIn} />
+        <NavBar
+          setLoginModalOpen={setLoginModalOpen}
+          isLoggedIn={isLoggedIn}
+          setSignupModalOpen={setSignupModalOpen}
+          logoutHandler={logoutHandler}
+        />
         <LoginModal
           loginModalOpen={loginModalOpen}
           setLoginModalOpen={setLoginModalOpen}
