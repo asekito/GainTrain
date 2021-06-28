@@ -18,6 +18,6 @@ export interface IUser {
 export interface IProgram {
   id: number;
   user_id: number;
-  programs: IExercise[];
+  exercises: IExercise[];
   program_date: Date;
 }
