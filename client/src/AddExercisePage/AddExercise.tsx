@@ -87,7 +87,7 @@ const AddExercise = () => {
       .then((res) => {
         const { success, msg } = res.data;
         if (success) {
-          window.location.href = "/add-exercise";
+          // window.location.href = "/add-exercise";
         }
       })
       .catch((err) => {
@@ -98,15 +98,13 @@ const AddExercise = () => {
   return (
     <div className="container">
       <div className="add-view">
+        <h1 onClick={() => console.log(programDate)}>testeststse</h1>
         <div style={{ flex: 1 }}>
           <AddExerciseForm
             currentExercise={currentExercise}
-            // changeHandler={changeHandler}
             setCurrentExercise={setCurrentExercise}
             addExercise={addExercise}
             clearForm={clearForm}
-            // setStrengthView={setStrengthView}
-            // strengthView={strengthView}
           />
         </div>
         <div style={{ flex: 1 }}>

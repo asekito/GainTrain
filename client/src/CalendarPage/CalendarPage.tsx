@@ -39,14 +39,15 @@ export const CalendarPage = () => {
     <>
       <Calendar
         localizer={localizer}
-        titleAccessor="program_date"
         events={programs}
+        titleAccessor="program_date"
         startAccessor="program_date"
         endAccessor="program_date"
         defaultDate={new Date(Date.now())}
         style={{ height: 500, fontFamily: "Roboto Condensed" }}
         defaultView="month"
         onSelectEvent={(e) => {
+          // console.log(e);
           setEventExercises(e.exercises);
           setEventModal(true);
         }}

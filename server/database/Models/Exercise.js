@@ -19,8 +19,14 @@ const Exercise = sequelize.define(
       },
     },
     exercises: {
-      type: DataTypes.JSON,
+      type: DataTypes.STRING,
       allowNull: false,
+      get: function () {
+        return JSON.parse(this.getDataValue("exercises"));
+      },
+      set: function (val) {
+        return this.setDataValue("exercises", JSON.stringify(val));
+      },
     },
     program_date: {
       type: DataTypes.DATE,

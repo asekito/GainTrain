@@ -23,7 +23,9 @@ export const ExerciseView = ({
         name="dateOfExercise"
         onChange={(
           e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-        ) => setProgramDate(new Date(e.currentTarget.value))}
+        ) => {
+          setProgramDate(new Date(e.currentTarget.value));
+        }}
         label="Date of Program"
       />
       <hr />

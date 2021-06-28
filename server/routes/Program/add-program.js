@@ -4,6 +4,7 @@ const { Exercise, User } = require("../../database/Index");
 app.post("/api/add-exercise", async (req, res) => {
   try {
     const { program, programDate, token } = req.body;
+    console.log(programDate);
     if (!token) throw new Error("No valid session.");
 
     const decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);

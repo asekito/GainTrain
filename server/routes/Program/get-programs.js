@@ -16,11 +16,6 @@ app.get("/api/programs", async (req, res) => {
       where: { user_id: decodedToken.user },
     });
 
-    // Parses the JSON, sequelize/mysql built in func to do this?
-    userPrograms.forEach((p) => {
-      p.dataValues.exercises = JSON.parse(p.dataValues.exercises);
-    });
-
     res.status(200).send({ success: true, msg: "", data: userPrograms });
   } catch (err) {
     console.error(err);
