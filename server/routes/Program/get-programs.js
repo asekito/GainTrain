@@ -1,11 +1,27 @@
 const { app, jwt } = require("../../server");
 const { User, Exercise } = require("../../database/Index");
 
-app.get("/api/programs", (req, res) => {
+app.get("/api/programs", async (req, res) => {
   try {
-    const { token } = req.body;
+    const { token } = req.headers;
+    if (!token) throw new Error("No valid token.");
 
-    res.status(200).send({ success: true, msg: "" });
+    const decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+
+    if (!decodedToken.user) {
+      throw new Error("No valid user on token.");
+    }
+
+    const userPrograms = await Exercise.findAll({
+      where: { user_id: decodedToken.user },
+    });
+
+    // Parses the JSON, sequelize/mysql built in func to do this?
+    userPrograms.forEach((p) => {
+      p.dataValues.exercises = JSON.parse(p.dataValues.exercises);
+    });
+
+    res.status(200).send({ success: true, msg: "", data: userPrograms });
   } catch (err) {
     console.error(err);
     res.status(400).send({ success: false, error: err });

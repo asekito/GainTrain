@@ -14,3 +14,10 @@ export interface IUser {
   login: string;
   password: string;
 }
+
+export interface IProgram {
+  id: number;
+  user_id: number;
+  programs: IExercise[];
+  program_date: Date;
+}

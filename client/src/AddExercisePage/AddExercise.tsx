@@ -21,9 +21,7 @@ const AddExercise = () => {
     distanceUnit: "mi",
     type: "strength",
   });
-  const [programDate, setProgramDate] = useState<string>(
-    moment(new Date(Date.now())).format("YYYY-MM-DD")
-  );
+  const [programDate, setProgramDate] = useState<Date>(new Date(Date.now()));
 
   const addExercise = () => {
     if (!currentExercise.exercise) {

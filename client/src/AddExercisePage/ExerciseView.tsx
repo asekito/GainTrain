@@ -1,11 +1,12 @@
 import { TextField } from "@material-ui/core";
+import moment from "moment";
 import React from "react";
 import { IExercise } from "../common/types";
 
 interface IExercisesViewProps {
   exercises: IExercise[];
-  programDate: string;
-  setProgramDate: React.Dispatch<string>;
+  programDate: Date;
+  setProgramDate: React.Dispatch<Date>;
   // delete handler
 }
 
@@ -18,11 +19,11 @@ export const ExerciseView = ({
     <div>
       <TextField
         type="date"
-        defaultValue={programDate}
+        defaultValue={moment(programDate).format("YYYY-MM-DD")}
         name="dateOfExercise"
         onChange={(
           e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-        ) => setProgramDate(e.currentTarget.value)}
+        ) => setProgramDate(new Date(e.currentTarget.value))}
         label="Date of Program"
       />
       <hr />
