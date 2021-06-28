@@ -30,9 +30,14 @@ export const NavBar = ({
           <Link to="/about">About</Link>
         </li>
         {isLoggedIn ? (
-          <li>
-            <Link to="/add-exercise">Add Exercise</Link>
-          </li>
+          <>
+            <li>
+              <Link to="/profile/program-history">Profile</Link>
+            </li>
+            <li>
+              <Link to="/add-exercise">Add Exercise</Link>
+            </li>
+          </>
         ) : (
           <>
             <li onClick={() => setLoginModalOpen(true)}>Login</li>

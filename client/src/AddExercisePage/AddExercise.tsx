@@ -9,7 +9,6 @@ import axios from "axios";
 
 const AddExercise = () => {
   const [exercises, setExercises] = useState<IExercise[]>([]);
-  // const [strengthView, setStrengthView] = useState<boolean>(true);
   const [currentExercise, setCurrentExercise] = useState<IExercise>({
     exercise: "",
     sets: 0,

@@ -1,5 +1,5 @@
-import React, { useState, lazy, Suspense, useEffect } from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import React, { useState, Suspense, useEffect } from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import axios from "axios";
 import "./assets/App.scss";
 
@@ -10,6 +10,7 @@ import {
   LoginModal,
   CalendarPage,
   SignUpModal,
+  ProfilePage,
 } from "./AppComponentImports";
 
 export const App = () => {
@@ -72,6 +73,9 @@ export const App = () => {
             </Route>
             <Route path="/add-exercise">
               <AddExercise />
+            </Route>
+            <Route path="/profile">
+              <ProfilePage />
             </Route>
             <Route path="/">
               <Home />

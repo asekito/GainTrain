@@ -19,3 +19,7 @@ export const CalendarPage = lazy(() =>
 export const SignUpModal = lazy(() =>
   import("./src/UserAuth/SignUpModal").then((m) => ({ default: m.SignUpModal }))
 );
+
+export const ProfilePage = lazy(() =>
+  import("./src/Profile/ProfilePage").then((m) => ({ default: m.ProfilePage }))
+);
