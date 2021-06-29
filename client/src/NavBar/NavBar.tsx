@@ -19,13 +19,16 @@ export const NavBar = ({
   const [profileSubMenuOpen, setProfileSubMenuOpen] = useState<boolean>(false);
   return (
     <div id="nav-bar">
-      <div style={{ display: "flex", alignItems: "center", flex: 1 }}>
+      <div
+        className="nav-bar-logo"
+        onClick={() => (window.location.href = "/")}
+      >
         <h1 style={{ marginRight: "10px" }}>Gain Train</h1>
         <TrainIcon fontSize="large" />
       </div>
       <ul>
         <li>
-          <Link to="/">Home</Link>
+          <Link to="/">HOME</Link>
         </li>
         <li>
           <Link to="/about">About</Link>
@@ -38,15 +41,7 @@ export const NavBar = ({
             >
               <Link to="/program-history">Profile</Link>
               {profileSubMenuOpen ? (
-                <ul
-                  style={{
-                    position: "absolute",
-                    listStyle: "none",
-                    padding: "initial",
-                    top: "64px",
-                    color: "black",
-                  }}
-                >
+                <ul className="sub-menu-container">
                   <li>
                     <Link to="/program-history">Program History</Link>
                   </li>

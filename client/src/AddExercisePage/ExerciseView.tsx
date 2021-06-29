@@ -2,6 +2,8 @@ import { TextField } from "@material-ui/core";
 import moment from "moment";
 import React from "react";
 import { IExercise } from "../common/types";
+import FitnessCenterIcon from "@material-ui/icons/FitnessCenter";
+import DirectionsRunIcon from "@material-ui/icons/DirectionsRun";
 
 interface IExercisesViewProps {
   exercises: IExercise[];
@@ -34,31 +36,41 @@ export const ExerciseView = ({
           {/* STRENGTH TRAINING VIEW */}
           {i.type === "strength" ? (
             <div className="exercise-addition">
-              <div onClick={() => console.log(exercises)}>
-                Exercise: {i.exercise}
+              <div>
+                <FitnessCenterIcon />
               </div>
-              {i.reps ? <div>Reps: {i.reps}</div> : null}
-              {i.sets ? <div>Sets: {i.sets}</div> : null}
-              {i.weight ? (
-                <div>
-                  {i.weight} {i.weightUnit}
+              <div>
+                <div onClick={() => console.log(exercises)}>
+                  Exercise: {i.exercise}
                 </div>
-              ) : null}
+                {i.reps ? <div>Reps: {i.reps}</div> : null}
+                {i.sets ? <div>Sets: {i.sets}</div> : null}
+                {i.weight ? (
+                  <div>
+                    {i.weight} {i.weightUnit}
+                  </div>
+                ) : null}
+              </div>
             </div>
           ) : null}
 
           {/* CARDIO TRAINING VIEW */}
           {i.type === "cardio" ? (
             <div className="exercise-addition">
-              <div onClick={() => console.log(exercises)}>
-                Exercise: {i.exercise}
+              <div>
+                <DirectionsRunIcon />
               </div>
-              {i.time ? <div>Total time: {i.time} minutes</div> : null}
-              {i.distance ? (
-                <div>
-                  Total distance: {i.distance} {i.distanceUnit}
+              <div>
+                <div onClick={() => console.log(exercises)}>
+                  Exercise: {i.exercise}
                 </div>
-              ) : null}
+                {i.time ? <div>Total time: {i.time} minutes</div> : null}
+                {i.distance ? (
+                  <div>
+                    Total distance: {i.distance} {i.distanceUnit}
+                  </div>
+                ) : null}
+              </div>
             </div>
           ) : null}
         </div>

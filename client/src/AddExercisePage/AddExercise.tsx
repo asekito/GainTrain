@@ -98,7 +98,6 @@ const AddExercise = () => {
   return (
     <div className="container">
       <div className="add-view">
-        <h1 onClick={() => console.log(programDate)}>testeststse</h1>
         <div style={{ flex: 1 }}>
           <AddExerciseForm
             currentExercise={currentExercise}
