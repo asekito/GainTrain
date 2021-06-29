@@ -32,3 +32,8 @@ require("./routes/Auth/tokenauth");
 require("./routes/Program/add-program");
 require("./routes/Program/get-programs");
 require("./routes/Program/get-programs-pages");
+
+// -----------------
+// DATA ROUTES
+// -----------------
+require("./routes/Program/get-predefined-weightlift-exercises");
