@@ -1,9 +1,12 @@
 const { app, jwt } = require("../../server");
 const { User, Exercise } = require("../../database/Index");
 
-app.get("/api/programs/", async (req, res) => {
+app.get("/api/programs/:page", async (req, res) => {
   try {
     const { token } = req.headers;
+    const { page } = req.params;
+    const limit = 20;
+    const offset = (page - 1) * limit;
 
     if (!token) throw new Error("No valid token.");
 
@@ -15,6 +18,8 @@ app.get("/api/programs/", async (req, res) => {
 
     const userPrograms = await Exercise.findAll({
       where: { user_id: decodedToken.user },
+      limit,
+      offset,
       order: ["program_date"],
     });
 

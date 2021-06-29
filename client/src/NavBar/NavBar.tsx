@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./assets/NavBar.scss";
 import { Link } from "react-router-dom";
 import TrainIcon from "@material-ui/icons/Train";
@@ -16,9 +16,10 @@ export const NavBar = ({
   setSignupModalOpen,
   logoutHandler,
 }: INavBarProps) => {
+  const [profileSubMenuOpen, setProfileSubMenuOpen] = useState<boolean>(false);
   return (
     <div id="nav-bar">
-      <div style={{ display: "contents" }}>
+      <div style={{ display: "flex", alignItems: "center", flex: 1 }}>
         <h1 style={{ marginRight: "10px" }}>Gain Train</h1>
         <TrainIcon fontSize="large" />
       </div>
@@ -31,8 +32,28 @@ export const NavBar = ({
         </li>
         {isLoggedIn ? (
           <>
-            <li>
-              <Link to="/profile/program-history">Profile</Link>
+            <li
+              onMouseEnter={() => setProfileSubMenuOpen(true)}
+              onMouseLeave={() => setProfileSubMenuOpen(false)}
+            >
+              <Link to="/program-history">Profile</Link>
+              {profileSubMenuOpen ? (
+                <ul
+                  style={{
+                    position: "absolute",
+                    listStyle: "none",
+                    padding: "initial",
+                    top: "64px",
+                    color: "black",
+                  }}
+                >
+                  <li>
+                    <Link to="/program-history">Program History</Link>
+                  </li>
+                  <li>Progress Analysis</li>
+                  <li>Saved Regiments</li>
+                </ul>
+              ) : null}
             </li>
             <li>
               <Link to="/add-exercise">Add Exercise</Link>

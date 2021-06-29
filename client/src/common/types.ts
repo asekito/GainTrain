@@ -21,3 +21,10 @@ export interface IProgram {
   exercises: IExercise[];
   program_date: Date;
 }
+
+export interface IGetProgramsResults {
+  id: number;
+  user_id: number;
+  exercises: IExercise[];
+  program_date: Date;
+}
