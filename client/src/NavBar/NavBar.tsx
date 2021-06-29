@@ -23,7 +23,7 @@ export const NavBar = ({
         className="nav-bar-logo"
         onClick={() => (window.location.href = "/")}
       >
-        <h1 style={{ marginRight: "10px" }}>Gain Train</h1>
+        <h1 style={{ marginRight: "10px" }}>GAIN TRAIN</h1>
         <TrainIcon fontSize="large" />
       </div>
       <ul>
@@ -56,8 +56,8 @@ export const NavBar = ({
           </>
         ) : (
           <>
-            <li onClick={() => setLoginModalOpen(true)}>Login</li>
-            <li onClick={() => setSignupModalOpen(true)}>Sign Up</li>
+            <li onClick={() => setLoginModalOpen(true)}>LOGIN</li>
+            <li onClick={() => setSignupModalOpen(true)}>SIGN UP</li>
           </>
         )}
         {isLoggedIn && (
@@ -65,7 +65,7 @@ export const NavBar = ({
             <Link to="/my-calendar">Calendar</Link>
           </li>
         )}
-        {isLoggedIn ? <li onClick={() => logoutHandler()}>Logout</li> : null}
+        {isLoggedIn ? <li onClick={() => logoutHandler()}>LOGOUT</li> : null}
       </ul>
     </div>
   );
