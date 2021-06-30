@@ -4,7 +4,6 @@ import { IExercise } from "../common/types";
 import { AddExerciseForm } from "./AddExerciseForm";
 import { ExerciseView } from "./ExerciseView";
 import "./assets/AddExercise.scss";
-// import moment from "moment";
 import axios from "axios";
 
 const AddExercise = () => {
@@ -46,6 +45,7 @@ const AddExercise = () => {
     // setStrengthView(true);
     setCurrentExercise({
       ...currentExercise,
+      exerciseName: "",
       exercise: -1,
       sets: 0,
       reps: 0,
@@ -54,6 +54,9 @@ const AddExercise = () => {
       time: 0,
       distance: 0,
       distanceUnit: "mi",
+      predefined_exercise: {
+        exercise: "",
+      },
     });
   };
 
@@ -61,6 +64,7 @@ const AddExercise = () => {
     // setStrengthView(true);
     setCurrentExercise({
       ...currentExercise,
+      exerciseName: "",
       exercise: -1,
       sets: 0,
       reps: 0,
@@ -69,8 +73,17 @@ const AddExercise = () => {
       time: 0,
       distance: 0,
       distanceUnit: "mi",
+      predefined_exercise: {
+        exercise: "",
+      },
       // type: strengthView ? "strength" : "cardio",
     });
+  };
+
+  const deleteExercise = (i: number) => {
+    const newExercises = [...exercises];
+    newExercises.splice(i, 1);
+    setExercises(newExercises);
   };
 
   const submitHandler = () => {
@@ -123,6 +136,7 @@ const AddExercise = () => {
             exercises={exercises}
             setProgramDate={setProgramDate}
             programDate={programDate}
+            deleteExercise={deleteExercise}
           />
         </div>
       </div>

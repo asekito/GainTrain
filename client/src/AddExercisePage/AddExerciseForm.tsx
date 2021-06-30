@@ -37,17 +37,19 @@ export const AddExerciseForm = ({
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.currentTarget;
-    console.log(e);
     setCurrentExercise({ ...currentExercise, [name]: value });
   };
 
-  const selectChangeHandler = (name: string, value: string) => {
-    const splitValue = value.split(",");
-    const [idVal, exerciseName] = splitValue;
-
+  const selectChangeHandler = (
+    name: string,
+    exerciseName: string,
+    value: string
+  ) => {
+    // const splitValue = value.split(",");
+    // const [idVal, exerciseName] = splitValue;
     setCurrentExercise({
       ...currentExercise,
-      [name]: idVal,
+      [name]: value,
       exerciseName: exerciseName,
     });
   };
@@ -70,7 +72,7 @@ export const AddExerciseForm = ({
 
   return (
     <div className="form-container">
-      <h1 onClick={() => console.log(currentExercise)}>Add your workout</h1>
+      <h1>Add your workout</h1>
       <ButtonGroup
         color="secondary"
         aria-label="outlined primary button group"
@@ -120,13 +122,18 @@ export const AddExerciseForm = ({
             label="Exercise"
             name="exercise"
             className="add-exercise-input"
-            onChange={(e) => {
-              let { name, value } = e.target;
-              selectChangeHandler(name as string, value as string);
+            // value={currentExercise.predefined_exercise?.exercise}
+            value={currentExercise.exercise}
+            onChange={(e, i) => {
+              // @ts-ignore */
+              const { value, children } = i?.props;
+              const { name } = e.target;
+              selectChangeHandler(name as string, children, value);
             }}
           >
+            <MenuItem value={-1}></MenuItem>
             {predefinedWeightExercises.map((p) => (
-              <MenuItem value={`${p.id}, ${p.exercise}`}>{p.exercise}</MenuItem>
+              <MenuItem value={p.id}>{p.exercise}</MenuItem>
             ))}
           </Select>
           <TextField
@@ -165,13 +172,17 @@ export const AddExerciseForm = ({
             label="Exercise"
             name="exercise"
             className="add-exercise-input"
-            onChange={(e) => {
-              let { name, value } = e.target;
-              selectChangeHandler(name as string, value as string);
+            value={currentExercise.exercise}
+            onChange={(e, i) => {
+              // @ts-ignore */
+              const { value, children } = i?.props;
+              const { name } = e.target;
+              // selectChangeHandler(name as string, value as string);
+              selectChangeHandler(name as string, children, value);
             }}
           >
             {predefinedCardioExercises.map((p) => (
-              <MenuItem value={`${p.id}, ${p.exercise}`}>{p.exercise}</MenuItem>
+              <MenuItem value={p.id}>{p.exercise}</MenuItem>
             ))}
           </Select>
           <TextField

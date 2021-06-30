@@ -4,6 +4,7 @@ import moment from "moment";
 import "../../node_modules/react-big-calendar/lib/css/react-big-calendar.css";
 import { IExercise, IProgram } from "../common/types";
 import axios from "axios";
+import "./assets/CalendarPage.scss";
 
 const CalendarEventModal = lazy(() =>
   import("./CalendarEventModal").then((m) => ({

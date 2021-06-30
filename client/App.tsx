@@ -78,7 +78,7 @@ export const App = () => {
               <ProgramHistoryPage />
             </Route>
             <Route path="/">
-              <Home />
+              <Home isLoggedIn={isLoggedIn} />
             </Route>
           </Switch>
         </div>
