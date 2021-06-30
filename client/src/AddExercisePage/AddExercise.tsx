@@ -4,13 +4,14 @@ import { IExercise } from "../common/types";
 import { AddExerciseForm } from "./AddExerciseForm";
 import { ExerciseView } from "./ExerciseView";
 import "./assets/AddExercise.scss";
-import moment from "moment";
+// import moment from "moment";
 import axios from "axios";
 
 const AddExercise = () => {
   const [exercises, setExercises] = useState<IExercise[]>([]);
   const [currentExercise, setCurrentExercise] = useState<IExercise>({
-    exercise: "",
+    exerciseName: "",
+    exercise: -1,
     sets: 0,
     reps: 0,
     weight: 0,
@@ -45,7 +46,7 @@ const AddExercise = () => {
     // setStrengthView(true);
     setCurrentExercise({
       ...currentExercise,
-      exercise: "",
+      exercise: -1,
       sets: 0,
       reps: 0,
       weight: 0,
@@ -60,7 +61,7 @@ const AddExercise = () => {
     // setStrengthView(true);
     setCurrentExercise({
       ...currentExercise,
-      exercise: "",
+      exercise: -1,
       sets: 0,
       reps: 0,
       weight: 0,
@@ -80,7 +81,7 @@ const AddExercise = () => {
     }
     axios
       .post("/api/add-exercise", {
-        program: JSON.stringify(exercises),
+        program: exercises,
         programDate: programDate,
         token: token,
       })

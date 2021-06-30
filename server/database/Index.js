@@ -1,5 +1,6 @@
 const { Op } = require("./dbConnect");
 const { User } = require("./Models/User");
+const { Program } = require("./Models/Program");
 const { Exercise } = require("./Models/Exercise");
 const {
   PredefinedWeightliftExercises,
@@ -7,7 +8,8 @@ const {
 
 module.exports = {
   Op,
-  User,
+  Program,
   Exercise,
   PredefinedWeightliftExercises,
+  User,
 };

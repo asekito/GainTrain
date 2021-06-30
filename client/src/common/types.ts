@@ -1,5 +1,6 @@
 export interface IExercise {
-  exercise: string;
+  exerciseName: string;
+  exercise: number;
   sets?: number | 0;
   reps?: number | 0;
   weight?: number | 0;
@@ -27,4 +28,13 @@ export interface IGetProgramsResults {
   user_id: number;
   exercises: IExercise[];
   program_date: Date;
+}
+
+export interface IPredefinedExercises {
+  id: number;
+  exercise: string;
+  description: string | null;
+  image_example: string | null;
+  main_target_muscle_group: number;
+  complementary_muscle_group: number;
 }

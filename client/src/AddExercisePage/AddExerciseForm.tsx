@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   InputAdornment,
   MenuItem,
   TextField,
   Button,
   ButtonGroup,
+  FormControl,
+  Select,
 } from "@material-ui/core";
-import { IExercise } from "../common/types";
+import { IExercise, IPredefinedExercises } from "../common/types";
+import axios from "axios";
 
 interface IAddExerciseFormProps {
   currentExercise: IExercise;
@@ -23,16 +26,44 @@ export const AddExerciseForm = ({
   clearForm,
   addExercise,
 }: IAddExerciseFormProps) => {
+  const [predefinedExercises, setPredefinedExercises] = useState<
+    IPredefinedExercises[] | []
+  >([]);
+
   const changeHandler = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.currentTarget;
+    console.log(e);
     setCurrentExercise({ ...currentExercise, [name]: value });
   };
 
+  const selectChangeHandler = (name: string, value: string) => {
+    const splitValue = value.split(",");
+    const [idVal, exerciseName] = splitValue;
+
+    setCurrentExercise({
+      ...currentExercise,
+      [name]: idVal,
+      exerciseName: exerciseName,
+    });
+  };
+
+  useEffect(() => {
+    axios
+      .get("/api/predefined-weightlift-exercises", {
+        headers: { token: localStorage.getItem("token") },
+      })
+      .then((r) => setPredefinedExercises(r.data.data))
+      .catch((err) => {
+        console.error(err);
+        alert(err);
+      });
+  }, []);
+
   return (
     <div className="form-container">
-      <h1>Add your workout</h1>
+      <h1 onClick={() => console.log(currentExercise)}>Add your workout</h1>
       <ButtonGroup
         color="secondary"
         aria-label="outlined primary button group"
@@ -41,7 +72,8 @@ export const AddExerciseForm = ({
         <Button
           onClick={() => {
             setCurrentExercise({
-              exercise: "",
+              exerciseName: "",
+              exercise: -1,
               sets: 0,
               reps: 0,
               weight: 0,
@@ -59,7 +91,8 @@ export const AddExerciseForm = ({
           onClick={() => {
             // setStrengthView(true);
             setCurrentExercise({
-              exercise: "",
+              exerciseName: "",
+              exercise: -1,
               sets: 0,
               reps: 0,
               weight: 0,
@@ -74,13 +107,27 @@ export const AddExerciseForm = ({
           Strength
         </Button>
       </ButtonGroup>
-      <TextField
+      {/* <TextField
         value={currentExercise.exercise}
         label="Exercise"
         name="exercise"
         onChange={(e) => changeHandler(e)}
         className="add-exercise-input"
-      />
+      /> */}
+      <Select
+        // select
+        label="Exercise"
+        name="exercise"
+        className="add-exercise-input"
+        onChange={(e) => {
+          let { name, value } = e.target;
+          selectChangeHandler(name as string, value as string);
+        }}
+      >
+        {predefinedExercises.map((p) => (
+          <MenuItem value={`${p.id}, ${p.exercise}`}>{p.exercise}</MenuItem>
+        ))}
+      </Select>
       {currentExercise.type === "strength" ? (
         <>
           <TextField

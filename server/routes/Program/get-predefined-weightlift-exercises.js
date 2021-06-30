@@ -4,7 +4,6 @@ const { PredefinedWeightliftExercises } = require("../../database/Index");
 app.get("/api/predefined-weightlift-exercises", async (req, res) => {
   try {
     const { token } = req.headers;
-
     if (!token) throw new Error("No valid token.");
 
     const decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
@@ -17,7 +16,6 @@ app.get("/api/predefined-weightlift-exercises", async (req, res) => {
       order: ["exercise"],
     });
 
-    console.log(predefExercises);
     res.status(200).send({ success: true, msg: "", data: predefExercises });
   } catch (err) {
     console.error(err);

@@ -1,8 +1,12 @@
 const { sequelize, DataTypes } = require("../dbConnect");
 const { User } = require("./User");
+const { Program } = require("./Program");
+const {
+  PredefinedWeightliftExercises,
+} = require("./PredefinedWeightExercises");
 
 const Exercise = sequelize.define(
-  "programs",
+  "program_exercises",
   {
     id: {
       type: DataTypes.INTEGER,
@@ -10,26 +14,52 @@ const Exercise = sequelize.define(
       primaryKey: true,
       autoIncrement: true,
     },
-    user_id: {
+    program_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: User,
+        model: Program,
         key: "id",
       },
     },
-    exercises: {
-      type: DataTypes.STRING,
+    exercise_id: {
+      type: DataTypes.INTEGER,
       allowNull: false,
-      get: function () {
-        return JSON.parse(this.getDataValue("exercises"));
-      },
-      set: function (val) {
-        return this.setDataValue("exercises", JSON.stringify(val));
+      references: {
+        model: PredefinedWeightliftExercises,
+        key: "id",
       },
     },
-    program_date: {
-      type: DataTypes.DATE,
+    sets: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    reps: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    weight: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    weightUnit: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    time: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    distance: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    distanceUnit: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    type: {
+      type: DataTypes.STRING,
       allowNull: false,
     },
   },

@@ -41,7 +41,7 @@ export const ExerciseView = ({
               </div>
               <div>
                 <div onClick={() => console.log(exercises)}>
-                  Exercise: {i.exercise}
+                  Exercise: {i.exerciseName}
                 </div>
                 {i.reps ? <div>Reps: {i.reps}</div> : null}
                 {i.sets ? <div>Sets: {i.sets}</div> : null}
@@ -62,7 +62,7 @@ export const ExerciseView = ({
               </div>
               <div>
                 <div onClick={() => console.log(exercises)}>
-                  Exercise: {i.exercise}
+                  Exercise: {i.exerciseName}
                 </div>
                 {i.time ? <div>Total time: {i.time} minutes</div> : null}
                 {i.distance ? (
