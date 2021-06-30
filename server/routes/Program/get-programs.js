@@ -1,5 +1,10 @@
 const { app, jwt } = require("../../server");
-const { User, Exercise } = require("../../database/Index");
+const {
+  User,
+  Program,
+  Exercise,
+  PredefinedWeightliftExercises,
+} = require("../../database/Index");
 
 app.get("/api/programs/", async (req, res) => {
   try {
@@ -13,10 +18,26 @@ app.get("/api/programs/", async (req, res) => {
       throw new Error("No valid user on token.");
     }
 
-    const userPrograms = await Exercise.findAll({
-      where: { user_id: decodedToken.user },
-      order: ["program_date"],
+    const userPrograms = await Program.findAll({
+      attributes: ["id", "user_id", "program_date"],
+      include: [
+        {
+          model: Exercise,
+          attributes: ["sets", "reps", "program_id"],
+          include: [
+            {
+              model: PredefinedWeightliftExercises,
+              attributes: ["exercise"],
+            },
+          ],
+        },
+      ],
     });
+
+    // const userPrograms = await Exercise.findAll({
+    //   where: { user_id: decodedToken.user },
+    //   order: ["program_date"],
+    // });
 
     res.status(200).send({ success: true, msg: "", data: userPrograms });
   } catch (err) {

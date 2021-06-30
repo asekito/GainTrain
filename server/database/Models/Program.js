@@ -1,5 +1,6 @@
 const { sequelize, DataTypes } = require("../dbConnect");
 const { User } = require("./User");
+const { Exercise } = require("./Exercise");
 
 const Program = sequelize.define(
   "programs",
@@ -25,6 +26,9 @@ const Program = sequelize.define(
   },
   { timestamps: false }
 );
+
+Program.hasMany(Exercise, { foreignKey: "program_id" });
+Exercise.belongsTo(Program, { foreignKey: "program_id" });
 
 module.exports = {
   Program,
