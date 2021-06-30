@@ -1,6 +1,6 @@
 /* Replace with your SQL commands */
 
-INSERT INTO predefined_weightlift_exercises (
+INSERT INTO predefined_exercises (
   exercise,
   main_target_muscle_group,
   complementary_muscle_group
@@ -137,11 +137,6 @@ VALUES
   -1
 ),
 (
-  "Plancks",
-  5,
-  -1
-),
-(
   "Deadbugs",
   5,
   -1
@@ -190,7 +185,88 @@ VALUES
   "Squats",
   7,
   -1
-);
+),
+(
+  "Jog",
+  0,
+  -1
+),
+(
+  "Sprint",
+  0,
+  -1
+),
+(
+  "Rowing",
+  0,
+  -1
+),
+(
+  "Boxing",
+  0,
+  -1
+),
+(
+  "Walking",
+  0,
+  -1
+),
+(
+  "Burpees",
+  0,
+  -1
+),
+(
+  "Cycling",
+  0,
+  -1
+),
+(
+  "Swimming",
+  0,
+  -1
+),
+(
+  "Basketball",
+  0,
+  -1
+),
+(
+  "Soccer",
+  0,
+  -1
+),
+(
+  "Kayaking",
+  0,
+  -1
+),
+(
+  "Stair climbing",
+  0,
+  -1
+),
+(
+  "Hiking",
+  0,
+  -1
+),
+(
+  "Martial Arts",
+  0,
+  -1
+),
+(
+  "Muay Thai",
+  0,
+  -1
+),
+(
+  "Brazilian Jiu Jitsu",
+  0,
+  -1
+)
+;
 
 /*
   -1 - None chosen

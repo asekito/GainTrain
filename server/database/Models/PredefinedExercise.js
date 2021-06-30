@@ -1,7 +1,7 @@
 const { sequelize, DataTypes } = require("../dbConnect");
 
-const PredefinedWeightliftExercises = sequelize.define(
-  "predefined_weightlift_exercises",
+const PredefinedExercise = sequelize.define(
+  "predefined_exercises",
   {
     id: {
       type: DataTypes.INTEGER,
@@ -34,5 +34,5 @@ const PredefinedWeightliftExercises = sequelize.define(
 );
 
 module.exports = {
-  PredefinedWeightliftExercises,
+  PredefinedExercise,
 };

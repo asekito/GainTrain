@@ -1,9 +1,7 @@
 const { sequelize, DataTypes } = require("../dbConnect");
 const { User } = require("./User");
 const { Program } = require("./Program");
-const {
-  PredefinedWeightliftExercises,
-} = require("./PredefinedWeightExercises");
+const { PredefinedExercise } = require("./PredefinedExercise");
 
 const Exercise = sequelize.define(
   "program_exercises",
@@ -26,7 +24,7 @@ const Exercise = sequelize.define(
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: PredefinedWeightliftExercises,
+        model: PredefinedExercise,
         key: "id",
       },
     },
@@ -66,8 +64,8 @@ const Exercise = sequelize.define(
   { timestamps: false }
 );
 
-PredefinedWeightliftExercises.hasMany(Exercise, { foreignKey: "exercise_id" });
-Exercise.belongsTo(PredefinedWeightliftExercises, {
+PredefinedExercise.hasMany(Exercise, { foreignKey: "exercise_id" });
+Exercise.belongsTo(PredefinedExercise, {
   foreignKey: "exercise_id",
 });
 

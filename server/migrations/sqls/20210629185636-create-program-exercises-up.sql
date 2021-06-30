@@ -12,5 +12,5 @@ CREATE TABLE IF NOT EXISTS program_exercises (
   distanceUnit varchar(10) DEFAULT NULL,
   type varchar(10) NOT NULL,
   FOREIGN KEY (program_id) REFERENCES programs(id),
-  FOREIGN KEY (exercise_id) REFERENCES predefined_weightlift_exercises(id)
+  FOREIGN KEY (exercise_id) REFERENCES predefined_exercises(id)
 );

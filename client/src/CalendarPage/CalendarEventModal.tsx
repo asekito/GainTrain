@@ -15,12 +15,15 @@ export const CalendarEventModal = ({
 }: ICalendarEventModal) => {
   return (
     <Modal open={eventModal} onClose={() => setEventModal(false)}>
-      <div className="medium-modal-white">
+      <div
+        className="medium-modal-white"
+        onClick={() => console.log(exercises)}
+      >
         {exercises.map((e) => (
           <>
             {e.type === "cardio" ? (
               <div>
-                <div>{e.exercise}</div>
+                <div>{e.predefined_exercise?.exercise}</div>
                 <div>Total time: {e.time} Min</div>
                 <div>
                   Total distance: {e.distance} {e.distanceUnit}
@@ -29,7 +32,7 @@ export const CalendarEventModal = ({
             ) : null}
             {e.type === "strength" ? (
               <div>
-                <div>{e.exercise}</div>
+                <div>{e.predefined_exercise?.exercise}</div>
                 <div>Sets: {e.sets}</div>
                 <div>Reps: {e.reps}</div>
                 <div>

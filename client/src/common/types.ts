@@ -1,5 +1,5 @@
 export interface IExercise {
-  exerciseName: string;
+  exerciseName?: string;
   exercise: number;
   sets?: number | 0;
   reps?: number | 0;
@@ -9,6 +9,9 @@ export interface IExercise {
   distance?: number | 0;
   distanceUnit?: "mi" | "km";
   type: "strength" | "cardio";
+  predefined_exercise?: {
+    exercise: string;
+  };
 }
 
 export interface IUser {
@@ -19,7 +22,7 @@ export interface IUser {
 export interface IProgram {
   id: number;
   user_id: number;
-  exercises: IExercise[];
+  program_exercises: IExercise[];
   program_date: Date;
 }
 

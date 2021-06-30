@@ -3,7 +3,7 @@ const {
   User,
   Program,
   Exercise,
-  PredefinedWeightliftExercises,
+  PredefinedExercise,
 } = require("../../database/Index");
 
 app.get("/api/programs/", async (req, res) => {
@@ -23,10 +23,20 @@ app.get("/api/programs/", async (req, res) => {
       include: [
         {
           model: Exercise,
-          attributes: ["sets", "reps", "program_id"],
+          attributes: [
+            "sets",
+            "reps",
+            "program_id",
+            "weight",
+            "weightUnit",
+            "time",
+            "distance",
+            "distanceUnit",
+            "type",
+          ],
           include: [
             {
-              model: PredefinedWeightliftExercises,
+              model: PredefinedExercise,
               attributes: ["exercise"],
             },
           ],

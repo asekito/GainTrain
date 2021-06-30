@@ -48,7 +48,7 @@ export const CalendarPage = () => {
         defaultView="month"
         onSelectEvent={(e) => {
           console.log(e);
-          setEventExercises(e.exercises);
+          setEventExercises(e.program_exercises);
           setEventModal(true);
         }}
       />

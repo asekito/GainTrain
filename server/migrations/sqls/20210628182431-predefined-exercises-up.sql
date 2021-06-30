@@ -1,5 +1,5 @@
 /* Replace with your SQL commands */
-CREATE TABLE IF NOT EXISTS predefined_weightlift_exercises (
+CREATE TABLE IF NOT EXISTS predefined_exercises (
   id INTEGER AUTO_INCREMENT PRIMARY KEY,
   exercise VARCHAR(150) NOT NULL,
   description VARCHAR(300) DEFAULT NULL,
@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS predefined_weightlift_exercises (
 
 /*
   -1 - None chosen
-  0 - Full Body
+  0 - Cardio
   1 - Shoulders
   2 - Chest
   3 - Biceps

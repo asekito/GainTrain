@@ -2,14 +2,12 @@ const { Op } = require("./dbConnect");
 const { User } = require("./Models/User");
 const { Program } = require("./Models/Program");
 const { Exercise } = require("./Models/Exercise");
-const {
-  PredefinedWeightliftExercises,
-} = require("./Models/PredefinedWeightExercises");
+const { PredefinedExercise } = require("./Models/PredefinedExercise");
 
 module.exports = {
   Op,
   Program,
   Exercise,
-  PredefinedWeightliftExercises,
+  PredefinedExercise,
   User,
 };

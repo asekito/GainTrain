@@ -26,7 +26,10 @@ export const AddExerciseForm = ({
   clearForm,
   addExercise,
 }: IAddExerciseFormProps) => {
-  const [predefinedExercises, setPredefinedExercises] = useState<
+  const [predefinedWeightExercises, setPredefinedWeightExercises] = useState<
+    IPredefinedExercises[] | []
+  >([]);
+  const [predefinedCardioExercises, setPredefinedCardioExercises] = useState<
     IPredefinedExercises[] | []
   >([]);
 
@@ -51,10 +54,14 @@ export const AddExerciseForm = ({
 
   useEffect(() => {
     axios
-      .get("/api/predefined-weightlift-exercises", {
+      .get("/api/predefined-exercises", {
         headers: { token: localStorage.getItem("token") },
       })
-      .then((r) => setPredefinedExercises(r.data.data))
+      .then((r) => {
+        const { cardioExercises, weightExercises } = r.data.data;
+        setPredefinedCardioExercises(cardioExercises);
+        setPredefinedWeightExercises(weightExercises);
+      })
       .catch((err) => {
         console.error(err);
         alert(err);
@@ -107,29 +114,21 @@ export const AddExerciseForm = ({
           Strength
         </Button>
       </ButtonGroup>
-      {/* <TextField
-        value={currentExercise.exercise}
-        label="Exercise"
-        name="exercise"
-        onChange={(e) => changeHandler(e)}
-        className="add-exercise-input"
-      /> */}
-      <Select
-        // select
-        label="Exercise"
-        name="exercise"
-        className="add-exercise-input"
-        onChange={(e) => {
-          let { name, value } = e.target;
-          selectChangeHandler(name as string, value as string);
-        }}
-      >
-        {predefinedExercises.map((p) => (
-          <MenuItem value={`${p.id}, ${p.exercise}`}>{p.exercise}</MenuItem>
-        ))}
-      </Select>
       {currentExercise.type === "strength" ? (
         <>
+          <Select
+            label="Exercise"
+            name="exercise"
+            className="add-exercise-input"
+            onChange={(e) => {
+              let { name, value } = e.target;
+              selectChangeHandler(name as string, value as string);
+            }}
+          >
+            {predefinedWeightExercises.map((p) => (
+              <MenuItem value={`${p.id}, ${p.exercise}`}>{p.exercise}</MenuItem>
+            ))}
+          </Select>
           <TextField
             value={currentExercise.sets}
             label="Sets"
@@ -162,6 +161,19 @@ export const AddExerciseForm = ({
         </>
       ) : (
         <>
+          <Select
+            label="Exercise"
+            name="exercise"
+            className="add-exercise-input"
+            onChange={(e) => {
+              let { name, value } = e.target;
+              selectChangeHandler(name as string, value as string);
+            }}
+          >
+            {predefinedCardioExercises.map((p) => (
+              <MenuItem value={`${p.id}, ${p.exercise}`}>{p.exercise}</MenuItem>
+            ))}
+          </Select>
           <TextField
             label="Time"
             type="number"

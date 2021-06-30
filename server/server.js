@@ -36,4 +36,4 @@ require("./routes/Program/get-programs-pages");
 // -----------------
 // DATA ROUTES
 // -----------------
-require("./routes/Program/get-predefined-weightlift-exercises");
+require("./routes/Program/get-predefined-exercises");
