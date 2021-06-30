@@ -10,7 +10,7 @@ import {
   LoginModal,
   CalendarPage,
   SignUpModal,
-  ProfilePage,
+  ProgramHistoryPage,
 } from "./AppComponentImports";
 
 export const App = () => {
@@ -74,11 +74,11 @@ export const App = () => {
             <Route path="/add-exercise">
               <AddExercise />
             </Route>
-            <Route path="/profile">
-              <ProfilePage />
+            <Route path="/program-history">
+              <ProgramHistoryPage />
             </Route>
             <Route path="/">
-              <Home />
+              <Home isLoggedIn={isLoggedIn} />
             </Route>
           </Switch>
         </div>

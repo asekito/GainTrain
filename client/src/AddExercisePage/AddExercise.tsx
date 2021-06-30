@@ -4,13 +4,13 @@ import { IExercise } from "../common/types";
 import { AddExerciseForm } from "./AddExerciseForm";
 import { ExerciseView } from "./ExerciseView";
 import "./assets/AddExercise.scss";
-import moment from "moment";
 import axios from "axios";
 
 const AddExercise = () => {
   const [exercises, setExercises] = useState<IExercise[]>([]);
   const [currentExercise, setCurrentExercise] = useState<IExercise>({
-    exercise: "",
+    exerciseName: "",
+    exercise: -1,
     sets: 0,
     reps: 0,
     weight: 0,
@@ -45,7 +45,8 @@ const AddExercise = () => {
     // setStrengthView(true);
     setCurrentExercise({
       ...currentExercise,
-      exercise: "",
+      exerciseName: "",
+      exercise: -1,
       sets: 0,
       reps: 0,
       weight: 0,
@@ -53,6 +54,9 @@ const AddExercise = () => {
       time: 0,
       distance: 0,
       distanceUnit: "mi",
+      predefined_exercise: {
+        exercise: "",
+      },
     });
   };
 
@@ -60,7 +64,8 @@ const AddExercise = () => {
     // setStrengthView(true);
     setCurrentExercise({
       ...currentExercise,
-      exercise: "",
+      exerciseName: "",
+      exercise: -1,
       sets: 0,
       reps: 0,
       weight: 0,
@@ -68,8 +73,17 @@ const AddExercise = () => {
       time: 0,
       distance: 0,
       distanceUnit: "mi",
+      predefined_exercise: {
+        exercise: "",
+      },
       // type: strengthView ? "strength" : "cardio",
     });
+  };
+
+  const deleteExercise = (i: number) => {
+    const newExercises = [...exercises];
+    newExercises.splice(i, 1);
+    setExercises(newExercises);
   };
 
   const submitHandler = () => {
@@ -80,14 +94,14 @@ const AddExercise = () => {
     }
     axios
       .post("/api/add-exercise", {
-        program: JSON.stringify(exercises),
+        program: exercises,
         programDate: programDate,
         token: token,
       })
       .then((res) => {
         const { success, msg } = res.data;
         if (success) {
-          window.location.href = "/add-exercise";
+          // window.location.href = "/add-exercise";
         }
       })
       .catch((err) => {
@@ -101,12 +115,9 @@ const AddExercise = () => {
         <div style={{ flex: 1 }}>
           <AddExerciseForm
             currentExercise={currentExercise}
-            // changeHandler={changeHandler}
             setCurrentExercise={setCurrentExercise}
             addExercise={addExercise}
             clearForm={clearForm}
-            // setStrengthView={setStrengthView}
-            // strengthView={strengthView}
           />
         </div>
         <div style={{ flex: 1 }}>
@@ -125,6 +136,7 @@ const AddExercise = () => {
             exercises={exercises}
             setProgramDate={setProgramDate}
             programDate={programDate}
+            deleteExercise={deleteExercise}
           />
         </div>
       </div>

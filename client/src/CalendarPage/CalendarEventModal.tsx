@@ -1,6 +1,7 @@
 import React from "react";
 import { IExercise } from "../common/types";
-import { Modal } from "@material-ui/core";
+import { Modal, Popover } from "@material-ui/core";
+import "./assets/CalendarPage.scss";
 
 interface ICalendarEventModal {
   exercises: IExercise[];
@@ -14,13 +15,24 @@ export const CalendarEventModal = ({
   setEventModal,
 }: ICalendarEventModal) => {
   return (
-    <Modal open={eventModal} onClose={() => setEventModal(false)}>
-      <div className="medium-modal-white">
+    <Popover
+      open={eventModal}
+      onClose={() => setEventModal(false)}
+      anchorOrigin={{
+        vertical: "bottom",
+        horizontal: "center",
+      }}
+      transformOrigin={{
+        vertical: "top",
+        horizontal: "center",
+      }}
+    >
+      <div className="popover">
         {exercises.map((e) => (
           <>
             {e.type === "cardio" ? (
-              <div>
-                <div>{e.exercise}</div>
+              <div className="calendar-popover-exercise">
+                <div>{e.predefined_exercise?.exercise}</div>
                 <div>Total time: {e.time} Min</div>
                 <div>
                   Total distance: {e.distance} {e.distanceUnit}
@@ -28,8 +40,8 @@ export const CalendarEventModal = ({
               </div>
             ) : null}
             {e.type === "strength" ? (
-              <div>
-                <div>{e.exercise}</div>
+              <div className="calendar-popover-exercise">
+                <div>{e.predefined_exercise?.exercise}</div>
                 <div>Sets: {e.sets}</div>
                 <div>Reps: {e.reps}</div>
                 <div>
@@ -40,6 +52,6 @@ export const CalendarEventModal = ({
           </>
         ))}
       </div>
-    </Modal>
+    </Popover>
   );
 };

@@ -1,7 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Jua&family=Kirang+Haerang&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bangers&family=Orbitron:wght@400;500;600;700&display=swap");
 
 body {
   margin: 0;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 #app {
@@ -21,4 +28,10 @@ body {
   display: flex;
   flex-direction: column;
   padding: 0 10em;
+}
+
+.popover {
+  font-family: "Roboto Condensed";
+  background: #eaf27c;
+  padding: 1.2em 2.1em;
 }

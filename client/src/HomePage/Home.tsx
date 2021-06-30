@@ -1,6 +1,10 @@
 import React from "react";
 
-const Home = () => {
+interface IHomeProps {
+  isLoggedIn: boolean;
+}
+
+const Home = ({ isLoggedIn }: IHomeProps) => {
   return (
     <div>
       <h1>Home</h1>

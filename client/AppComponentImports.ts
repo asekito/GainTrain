@@ -20,6 +20,8 @@ export const SignUpModal = lazy(() =>
   import("./src/UserAuth/SignUpModal").then((m) => ({ default: m.SignUpModal }))
 );
 
-export const ProfilePage = lazy(() =>
-  import("./src/Profile/ProfilePage").then((m) => ({ default: m.ProfilePage }))
+export const ProgramHistoryPage = lazy(() =>
+  import("./src/Profile/ProgramHistory/ProgramHistoryPage").then((m) => ({
+    default: m.ProgramHistoryPage,
+  }))
 );

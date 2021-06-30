@@ -4,6 +4,7 @@ import moment from "moment";
 import "../../node_modules/react-big-calendar/lib/css/react-big-calendar.css";
 import { IExercise, IProgram } from "../common/types";
 import axios from "axios";
+import "./assets/CalendarPage.scss";
 
 const CalendarEventModal = lazy(() =>
   import("./CalendarEventModal").then((m) => ({
@@ -40,14 +41,15 @@ export const CalendarPage = () => {
       <Calendar
         localizer={localizer}
         titleAccessor="program_date"
-        events={programs}
         startAccessor="program_date"
         endAccessor="program_date"
+        events={programs}
         defaultDate={new Date(Date.now())}
         style={{ height: 500, fontFamily: "Roboto Condensed" }}
         defaultView="month"
         onSelectEvent={(e) => {
-          setEventExercises(e.exercises);
+          console.log(e);
+          setEventExercises(e.program_exercises);
           setEventModal(true);
         }}
       />
