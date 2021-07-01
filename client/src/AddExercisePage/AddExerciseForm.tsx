@@ -1,4 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, {
+  useState,
+  useEffect,
+  ChangeEventHandler,
+  KeyboardEventHandler,
+} from "react";
 import {
   InputAdornment,
   MenuItem,
@@ -164,6 +169,12 @@ export const AddExerciseForm = ({
             }}
             onChange={(e) => changeHandler(e)}
             className="add-exercise-input"
+            onKeyPress={(e: React.KeyboardEvent<HTMLInputElement>) => {
+              console.log(e.key);
+              if (e.key === "Enter") {
+                addExercise();
+              }
+            }}
           />
         </>
       ) : (
